@@ -1,0 +1,9 @@
+# Files kept in the repo but excluded from the distributed wp.org package.
+# Honored by `wp dist-archive` and 10up/action-wordpress-plugin-deploy.
+.git
+.github
+.gitignore
+.distignore
+.DS_Store
+README.md
+node_modules

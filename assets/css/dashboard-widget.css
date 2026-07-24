@@ -1,0 +1,41 @@
+/**
+ * Qevix Shield "Site Security" widget on the main WordPress Dashboard (index.php),
+ * which does not load Qevix Shield's admin.css. Scoped to the widget's own
+ * container id. Enqueued via wp_enqueue_style() on the Dashboard screen.
+ */
+#qevix_shield_status .qevix-shield-dw-head {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 4px;
+}
+#qevix_shield_status .qevix-shield-dw-head .dashicons {
+	color: #2271b1;
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+}
+#qevix_shield_status .qevix-shield-dw-sub { margin: 12px 0 4px; }
+#qevix_shield_status .qevix-shield-dw-recs { margin: 0; padding: 0; list-style: none; }
+#qevix_shield_status .qevix-shield-dw-recs li {
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	padding: 8px 0;
+	border-top: 1px solid #f0f0f1;
+}
+#qevix_shield_status .qevix-shield-dw-recs .dashicons-warning {
+	color: #dba617;
+	flex: 0 0 auto;
+	margin-top: 1px;
+}
+#qevix_shield_status .qevix-shield-dw-recs a { white-space: nowrap; }
+#qevix_shield_status .qevix-shield-dw-ok {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: #00a32a;
+	margin: 10px 0;
+}
+#qevix_shield_status .qevix-shield-dw-ok .dashicons { color: #00a32a; }
+#qevix_shield_status .qevix-shield-dw-foot { margin: 14px 0 0; }

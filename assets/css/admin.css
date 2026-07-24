@@ -1,0 +1,1018 @@
+.qevix-shield-wrap .card {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 12px 16px;
+	/* WP core's own .card rule ships max-width:520px/min-width:255px; our
+	   boxes (e.g. Sessions' locked-preview and pro Admin Session Management
+	   cards) are meant to fill the tab body width, so override both. */
+	max-width: none;
+	min-width: 0;
+}
+
+/* Pro-locked/pro fieldsets across every tab (Login Protection, Password
+   Security, XML-RPC, Malware, Notifications, 2FA, ...). Border/legend chrome
+   lives here too (was repeated inline in every view). Width follows the same
+   cap as the free form-tables above it (see the form-column rules at the
+   bottom) so the locked box and the free fields read as one column instead
+   of two different widths. */
+.qevix-shield-wrap .qevix-shield-pro-fieldset {
+	box-sizing: border-box;
+	width: auto;
+	max-width: 1000px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 4px 16px 8px;
+	margin-top: 12px;
+}
+
+.qevix-shield-wrap .qevix-shield-pro-fieldset > legend {
+	padding: 0 8px;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* Dashboard widget cards: fixed 5-per-row grid (equal widths/heights per
+   row), stepping down with the viewport. 782px is WP admin's own mobile
+   breakpoint. */
+.qevix-shield-wrap .qevix-shield-widgets {
+	display: grid;
+	grid-template-columns: repeat( 5, minmax( 0, 1fr ) );
+	gap: 16px;
+	margin-top: 16px;
+}
+
+@media ( max-width: 1440px ) {
+	.qevix-shield-wrap .qevix-shield-widgets {
+		grid-template-columns: repeat( 4, minmax( 0, 1fr ) );
+	}
+}
+
+@media ( max-width: 1100px ) {
+	.qevix-shield-wrap .qevix-shield-widgets {
+		grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+	}
+}
+
+@media ( max-width: 782px ) {
+	.qevix-shield-wrap .qevix-shield-widgets {
+		grid-template-columns: repeat( 2, minmax( 0, 1fr ) );
+	}
+}
+
+@media ( max-width: 480px ) {
+	.qevix-shield-wrap .qevix-shield-widgets {
+		grid-template-columns: minmax( 0, 1fr );
+	}
+}
+
+.qevix-shield-wrap .qevix-shield-widgets .card {
+	margin-top: 0;
+	animation: qevix-shield-card-in .45s ease-out backwards;
+	/* Tighter than WP's .card default so the 5-per-row boxes stay short. */
+	padding: 10px 14px 12px;
+}
+
+.qevix-shield-wrap .qevix-shield-widgets .card h3 {
+	margin: 2px 0 6px;
+	font-size: 13px;
+}
+
+.qevix-shield-wrap .qevix-shield-widgets .card p:last-child {
+	margin-bottom: 0;
+}
+
+/* Staggered entrance, row by row. */
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(2)  { animation-delay: .05s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(3)  { animation-delay: .1s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(4)  { animation-delay: .15s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(5)  { animation-delay: .2s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(6)  { animation-delay: .25s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(7)  { animation-delay: .3s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(8)  { animation-delay: .35s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(9)  { animation-delay: .4s; }
+.qevix-shield-wrap .qevix-shield-widgets .card:nth-child(n+10) { animation-delay: .45s; }
+
+@keyframes qevix-shield-card-in {
+	from { opacity: 0; transform: translateY( 8px ); }
+	to   { opacity: 1; transform: none; }
+}
+
+/* Whole card is a link to its module's tab: keep normal text color, no
+   underline, and lift on hover so it reads as clickable. */
+.qevix-shield-wrap .qevix-shield-card-link {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+	transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+
+.qevix-shield-wrap .qevix-shield-card-link:hover,
+.qevix-shield-wrap .qevix-shield-card-link:focus {
+	color: inherit;
+	border-color: #2271b1;
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, .08 );
+	transform: translateY( -2px );
+}
+
+.qevix-shield-wrap .qevix-shield-card-link:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: 1px;
+}
+
+/* Big metric value inside a card (replaces the old inline font styles). */
+.qevix-shield-wrap .qevix-shield-big-num {
+	font-size: 20px;
+	font-weight: 600;
+	margin: 4px 0;
+}
+
+/* Login Attempts card: label + count row, each followed by a progress bar. */
+.qevix-shield-wrap .qevix-shield-bar-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	margin-top: 6px;
+}
+
+.qevix-shield-wrap .qevix-shield-bar-row + .qevix-shield-progress {
+	margin-top: 4px;
+}
+
+.qevix-shield-wrap .qevix-shield-bar-label {
+	color: #666;
+	font-size: 14px;
+}
+
+.qevix-shield-wrap .qevix-shield-metric {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.qevix-shield-wrap .qevix-shield-metric-good { color: #46b450; }
+.qevix-shield-wrap .qevix-shield-metric-bad  { color: #dc3232; }
+
+/* Animated progress bar (e.g. Password Policy rules on/total). */
+.qevix-shield-wrap .qevix-shield-progress {
+	margin-top: 8px;
+	height: 9px;
+	border-radius: 4px;
+	background: #e5e5e5;
+	overflow: hidden;
+}
+
+.qevix-shield-wrap .qevix-shield-progress-fill {
+	display: block;
+	height: 100%;
+	border-radius: 4px;
+	animation: qevix-shield-fill-in .9s ease-out backwards;
+	animation-delay: .3s;
+	transform-origin: left;
+}
+
+@keyframes qevix-shield-fill-in {
+	from { transform: scaleX( 0 ); }
+	to   { transform: none; }
+}
+
+.qevix-shield-wrap .qevix-shield-fill-good    { background: #46b450; }
+.qevix-shield-wrap .qevix-shield-fill-warn    { background: #ffb900; }
+.qevix-shield-wrap .qevix-shield-fill-bad     { background: #dc3232; }
+.qevix-shield-wrap .qevix-shield-fill-neutral { background: #787c82; }
+
+/* Animated status badge next to text values (Malware Scan, Plugin Integrity). */
+.qevix-shield-wrap .qevix-shield-status-badge {
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
+	vertical-align: text-bottom;
+	animation: qevix-shield-badge-pop .5s cubic-bezier( .34, 1.56, .64, 1 ) backwards;
+	animation-delay: .25s;
+}
+
+.qevix-shield-wrap .qevix-shield-badge-good { color: #46b450; }
+.qevix-shield-wrap .qevix-shield-badge-warn { color: #ffb900; }
+.qevix-shield-wrap .qevix-shield-badge-bad  { color: #dc3232; }
+
+@keyframes qevix-shield-badge-pop {
+	from { opacity: 0; transform: scale( 0 ); }
+	to   { opacity: 1; transform: none; }
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.qevix-shield-wrap .qevix-shield-widgets .card,
+	.qevix-shield-wrap .qevix-shield-progress-fill,
+	.qevix-shield-wrap .qevix-shield-status-badge {
+		animation: none;
+	}
+
+	.qevix-shield-wrap .qevix-shield-card-link:hover,
+	.qevix-shield-wrap .qevix-shield-card-link:focus {
+		transform: none;
+	}
+}
+
+.qevix-shield-wrap .qevix-shield-widgets .qevix-shield-locked {
+	opacity: 0.5;
+	position: relative;
+}
+
+.qevix-shield-wrap .qevix-shield-locked h3 .dashicons {
+	color: #d63638;
+	vertical-align: middle;
+}
+
+/* Pro/locked badge inside Settings tabs */
+.qevix-shield-wrap .nav-tab-wrapper .qevix-shield-tab-badge {
+	font-size: 15px;
+	width: 15px;
+	height: 15px;
+	line-height: 1.4;
+	margin-right: 2px;
+}
+
+.qevix-shield-wrap .nav-tab.qevix-shield-tab-locked {
+	color: #b32d2e;
+}
+
+.qevix-shield-wrap .nav-tab.qevix-shield-tab-locked .qevix-shield-tab-badge {
+	color: #b32d2e;
+}
+
+.qevix-shield-wrap .nav-tab .dashicons-star-filled {
+	color: #dba617;
+}
+
+/* Dashboard "View full log" link next to Recent Activity */
+.qevix-shield-see-more {
+	font-size: 13px;
+	font-weight: 400;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+/* Digest header above the Recent Activity table: explainer left, log link
+   right. */
+.qevix-shield-digest-head {
+	justify-content: space-between;
+	margin: 12px 0;
+}
+
+.qevix-shield-digest-head .description {
+	margin: 0;
+}
+
+/* Realtime "Live" indicator on the Logs screen */
+.qevix-shield-live {
+	font-size: 12px;
+	font-weight: 600;
+	color: #00a32a;
+	vertical-align: middle;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+.qevix-shield-live-dot {
+	display: inline-block;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: #00a32a;
+	vertical-align: baseline;
+	animation: qevix-shield-live-breathe 2s ease-in-out infinite;
+}
+
+.qevix-shield-live.qevix-shield-live-pulse .qevix-shield-live-dot {
+	animation: qevix-shield-live-flash .4s ease-in-out 2;
+}
+
+@keyframes qevix-shield-live-breathe {
+	0%, 100% { opacity: 1; }
+	50%      { opacity: .35; }
+}
+
+@keyframes qevix-shield-live-flash {
+	0%, 100% { transform: scale( 1 ); }
+	50%      { transform: scale( 1.6 ); }
+}
+
+/* "this session" marker in the Sessions list */
+.qevix-shield-session-current {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 6px;
+	font-size: 11px;
+	font-weight: 600;
+	color: #fff;
+	background: #00a32a;
+	border-radius: 9px;
+	vertical-align: middle;
+}
+
+/* Green fade applied to freshly-arrived log rows */
+.qevix-shield-row-new > td {
+	animation: qevix-shield-row-flash 2.4s ease-out 1;
+}
+
+@keyframes qevix-shield-row-flash {
+	0%   { background-color: #b8f5c8; }
+	100% { background-color: transparent; }
+}
+
+/* ---------------------------------------------------------------------------
+ * "?" help-tip popovers (QevixShield_Menu::help_tip + assets/js/help-tips.js).
+ * Spans, not buttons, so they stay interactive inside <fieldset disabled>;
+ * shown on hover/focus via CSS and pinned open via the JS click toggle.
+ * ------------------------------------------------------------------------- */
+.qevix-shield-help {
+	position: relative;
+	display: inline-block;
+	margin-left: 4px;
+	vertical-align: middle;
+	line-height: 1;
+	/* Re-enable interaction when an ancestor fieldset is disabled. */
+	pointer-events: auto;
+}
+
+.qevix-shield-help-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: #c3c4c7;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	font-style: normal;
+	cursor: help;
+	user-select: none;
+}
+
+.qevix-shield-help-icon:hover,
+.qevix-shield-help-icon:focus,
+.qevix-shield-help.qevix-shield-help-open .qevix-shield-help-icon {
+	background: #2271b1;
+	outline: none;
+}
+
+.qevix-shield-help-pop {
+	display: none;
+	position: absolute;
+	top: calc( 100% + 8px );
+	left: -10px;
+	z-index: 100010;
+	width: 300px;
+	max-width: 72vw;
+	padding: 10px 12px;
+	background: #1d2327;
+	color: #f0f0f1;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.55;
+	text-align: left;
+	white-space: normal;
+	border-radius: 4px;
+	box-shadow: 0 2px 10px rgba( 0, 0, 0, .25 );
+	cursor: auto;
+}
+
+/* Little arrow pointing up at the icon */
+.qevix-shield-help-pop::before {
+	content: "";
+	position: absolute;
+	top: -5px;
+	left: 13px;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #1d2327;
+}
+
+.qevix-shield-help-pop-flip {
+	left: auto;
+	right: -10px;
+}
+
+.qevix-shield-help-pop-flip::before {
+	left: auto;
+	right: 13px;
+}
+
+.qevix-shield-help:hover .qevix-shield-help-pop,
+.qevix-shield-help:focus-within .qevix-shield-help-pop,
+.qevix-shield-help.qevix-shield-help-open .qevix-shield-help-pop {
+	display: block;
+}
+
+.qevix-shield-help-pop code {
+	background: rgba( 255, 255, 255, .15 );
+	color: #f0f0f1;
+	font-size: 11px;
+	padding: 1px 4px;
+}
+
+/* Tips lead the field cell (rendered at the start of the <td>, before the
+   control) instead of trailing the label in the <th>: no left gap in that
+   position, a small gap before the control instead. */
+.qevix-shield-wrap .form-table td > .qevix-shield-help:first-child {
+	margin-left: 0;
+	margin-right: 4px;
+}
+
+/* Desktop: park the leading tip in the 24px gutter between the label column
+   and the field column (absolute, so it takes no flow space — an inline icon
+   before a full-width textarea or a block checkbox list otherwise sits alone
+   on its own line and pushes the field down). Ends ~4px left of the control. */
+@media ( min-width: 783px ) {
+	.qevix-shield-wrap .form-table td {
+		position: relative;
+	}
+
+	.qevix-shield-wrap .form-table td > .qevix-shield-help:first-child {
+		position: absolute;
+		left: -28px;
+		top: 17px;
+		margin: 0;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Settings tab body (every free + pro tab renders inside it).
+ * ------------------------------------------------------------------------- */
+.qevix-shield-tab-body {
+	margin-top: 16px;
+}
+
+/* ---------------------------------------------------------------------------
+ * "Need help?" external-setup guides (reCAPTCHA keys, 2FA authenticator apps).
+ * A small link under the input opens the provider's own page in a new tab; a
+ * <details> box holds a plain-language step-by-step for non-technical users.
+ * ------------------------------------------------------------------------- */
+.qevix-shield-external-link {
+	display: inline-block;
+	margin-top: 4px;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+/* The inline-block above would otherwise beat the UA's [hidden] rule —
+   needed by the Notifications gateway links, which show one at a time. */
+.qevix-shield-external-link[hidden] {
+	display: none;
+}
+
+.qevix-shield-external-link .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	vertical-align: text-bottom;
+}
+
+.qevix-shield-guide {
+	max-width: 640px;
+	margin: 16px 0;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #2271b1;
+	border-radius: 2px;
+	background: #f6f7f7;
+}
+
+.qevix-shield-guide > summary {
+	padding: 10px 14px;
+	font-weight: 600;
+	cursor: pointer;
+	user-select: none;
+}
+
+.qevix-shield-guide > summary .dashicons {
+	color: #2271b1;
+	vertical-align: text-bottom;
+}
+
+.qevix-shield-guide[open] > summary {
+	border-bottom: 1px solid #dcdcde;
+}
+
+.qevix-shield-guide .qevix-shield-guide-body {
+	padding: 4px 16px 12px;
+}
+
+.qevix-shield-guide ol {
+	margin: 8px 0 4px 20px;
+}
+
+.qevix-shield-guide ol li {
+	margin-bottom: 6px;
+}
+
+/* Sample-message boxes inside guides (the "what will I receive" blocks). */
+.qevix-shield-guide .qevix-shield-sample {
+	margin: 4px 0 10px;
+	padding: 10px 12px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 12px;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.qevix-shield-app-links {
+	margin: 6px 0 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 18px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Generic building blocks shared by the settings views (free + pro views and
+ * the teaser previews all load this stylesheet) — replaces the per-view
+ * inline styles that used to repeat these rules.
+ * ------------------------------------------------------------------------- */
+
+/* 16px lock dashicon beside pro field labels and fieldset legends. */
+.qevix-shield-lock-icon {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+	margin-right: 2px;
+}
+
+/* Field sizing — replaces the former per-input inline width/min-width styles. */
+.qevix-shield-num-input {
+	width: 80px;
+}
+
+.qevix-shield-min-select {
+	min-width: 160px;
+}
+
+.qevix-shield-role-select {
+	min-width: 280px;
+}
+
+/* Small gap before an inline control that follows another control/label. */
+.qevix-shield-gap-left {
+	margin-left: 8px;
+}
+
+/* Gold "pro active" star dashicon (mirrors the nav-tab badge color). */
+.qevix-shield-star-icon {
+	color: #dba617;
+}
+
+/* Vertical checkbox list inside a field cell (scan scopes, event categories). */
+.qevix-shield-block-label {
+	display: block;
+	margin: 0 0 4px;
+}
+
+/* Horizontal flex-wrap row of checkbox/radio choices (2FA roles); items wrap
+   whole instead of breaking mid-label. */
+.qevix-shield-choices {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px 16px;
+}
+
+.qevix-shield-choices label {
+	white-space: nowrap;
+}
+
+/* A single inline choice in a plain run of labels (reCAPTCHA Protect Forms). */
+.qevix-shield-choice {
+	margin-right: 16px;
+}
+
+/* Inline choice group indented under its radio (Force Reset roles). */
+.qevix-shield-choice-indent {
+	margin-left: 22px;
+}
+
+.qevix-shield-choice-indent label {
+	margin-right: 10px;
+}
+
+/* Bulleted list (WP admin resets list styles to none). */
+.qevix-shield-disc-list {
+	list-style: disc;
+	margin: 8px 0 12px 20px;
+}
+
+/* Group heading above each cluster of feature bullets (Qevix Shield Pro card). */
+.qevix-shield-feature-group {
+	margin: 16px 0 4px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #50575e;
+}
+.qevix-shield-feature-group:first-child {
+	margin-top: 4px;
+}
+
+/* Read-only inline code list (File Security's protected files). */
+.qevix-shield-code-list {
+	margin-top: 0;
+}
+
+.qevix-shield-code-list code {
+	display: inline-block;
+	margin: 0 6px 6px 0;
+}
+
+/* Sub-row inside a field cell or form, tight under/over its sibling. */
+.qevix-shield-field-row {
+	margin: 0 0 6px;
+}
+
+/* Cap over-wide content (notices, results tables) at a readable width. */
+.qevix-shield-narrow {
+	max-width: 800px;
+}
+
+/* Small action form rendered inside a table cell or heading. */
+.qevix-shield-inline-form {
+	display: inline;
+	margin: 0;
+}
+
+/* Heading/toolbar row with an action button beside the text. */
+.qevix-shield-flex-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+h4.qevix-shield-flex-row {
+	margin: 18px 0 6px;
+}
+
+/* Row of side-by-side small action forms/buttons. */
+.qevix-shield-action-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 12px;
+}
+
+/* Generic block section spacing. */
+.qevix-shield-section {
+	margin-bottom: 16px;
+}
+
+/* Boxed .card panel (license screens, locked/pro session cards, upsell box).
+   WP core's .card padding is tighter; panels restore comfortable padding.
+   Add .qevix-shield-panel-narrow when the panel should not fill the tab body. */
+.qevix-shield-wrap .qevix-shield-panel {
+	padding: 16px 20px;
+	margin-top: 16px;
+}
+
+.qevix-shield-wrap .qevix-shield-panel > h2:first-child,
+.qevix-shield-wrap .qevix-shield-panel > h3:first-child,
+.qevix-shield-wrap .qevix-shield-panel > h4:first-child {
+	margin-top: 0;
+}
+
+.qevix-shield-wrap .qevix-shield-panel-narrow {
+	max-width: 640px;
+}
+
+/* Inline dependency warning under a control (QevixShield_Menu::dependency_notice). */
+.qevix-shield-dep-notice {
+	margin: 8px 0 0;
+	max-width: 720px;
+}
+
+.qevix-shield-dep-notice .dashicons-warning {
+	color: #b32d2e;
+	vertical-align: text-bottom;
+}
+
+/* reCAPTCHA "Test keys" preflight result + verified marker. */
+.qevix-shield-rc-verified {
+	color: #007017;
+	margin-left: 8px;
+	white-space: nowrap;
+}
+
+.qevix-shield-rc-verified .dashicons {
+	vertical-align: text-bottom;
+}
+
+.qevix-shield-rc-result {
+	margin: 8px 0 0;
+	max-width: 720px;
+}
+
+.qevix-shield-rc-result:empty {
+	display: none;
+}
+
+.qevix-shield-rc-ok {
+	color: #007017;
+	font-weight: 600;
+}
+
+.qevix-shield-rc-bad {
+	color: #b32d2e;
+	font-weight: 600;
+}
+
+.qevix-shield-rc-info {
+	color: #50575e;
+}
+
+/* The v2 preflight checkbox renders here; v3 needs no interaction and stays hidden. */
+#qevix-shield-rc-test-widget:not([hidden]) {
+	margin: 12px 0 0;
+}
+
+/* Padded notice box with a heading (2FA recovery codes). */
+.qevix-shield-notice-box {
+	padding: 16px;
+}
+
+.qevix-shield-notice-box > h2:first-child {
+	margin-top: 0;
+}
+
+/* Severity text colors (malware results, summaries). */
+.qevix-shield-sev-critical { color: #d63638; }
+.qevix-shield-sev-warning  { color: #dba617; }
+.qevix-shield-sev-info     { color: #646970; }
+
+.qevix-shield-sev-badge {
+	font-weight: 600;
+}
+
+/* Status text colors on icons/links. */
+.qevix-shield-text-good   { color: #00a32a; }
+.qevix-shield-text-danger { color: #b32d2e; }
+
+/* 2FA enrollment bits (pro twofa view). */
+.qevix-shield-2fa-codes {
+	background: #f6f7f7;
+	padding: 12px;
+	display: inline-block;
+}
+
+.qevix-shield-2fa-qr {
+	margin: 12px 0;
+}
+
+/* Dashicon inside a WP .button (e.g. the recovery-codes Download link):
+ * core's 20px icon square sits high against the 13px button text. */
+.qevix-shield-wrap .button .qevix-shield-btn-icon {
+	font-size: 16px;
+	line-height: 1.2;
+	height: 16px;
+	width: 16px;
+	vertical-align: text-bottom;
+	margin-right: 4px;
+}
+
+.qevix-shield-2fa-key {
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Form-column alignment (2026-07-09 retouch). Still WP's native form-table —
+ * no fixed control widths, no label-column restructure — just a consistent
+ * column: a readable cap so wide screens don't stretch textareas edge-to-edge,
+ * one shared label-column width, and equalized top padding so a row's label
+ * lines up with its control (core ships th 20px / td 15px, which sits every
+ * label visibly lower than its field).
+ * ------------------------------------------------------------------------- */
+.qevix-shield-wrap .form-table {
+	max-width: 1000px;
+}
+
+/* Desktop only — below 782px core collapses th/td into stacked blocks and
+   must keep its own responsive padding/width. */
+@media ( min-width: 783px ) {
+	/* 36px gutter: the tip icon parks at -28px (16px wide, ending 12px before
+	   the control) and label text stops 36px out, so even a full label line
+	   can never touch the icon. */
+	.qevix-shield-wrap .form-table th {
+		width: 280px;
+		padding: 15px 36px 15px 0;
+		vertical-align: top;
+	}
+
+	.qevix-shield-wrap .form-table td {
+		padding: 15px 10px 15px 0;
+		vertical-align: top;
+	}
+
+	/* Inside a pro fieldset the table sits behind the 16px padding + 1px
+	   border, so the label column narrows by that offset to keep the control
+	   column flush with the free rows above the box. */
+	.qevix-shield-wrap .qevix-shield-pro-fieldset .form-table th {
+		width: 263px;
+	}
+}
+
+/* Long helper lines wrap at a readable measure instead of spanning the
+   monitor. */
+.qevix-shield-wrap p.description {
+	max-width: 720px;
+}
+
+/* Section headings get consistent breathing room between blocks; the first
+   one hugs the tab strip. */
+.qevix-shield-tab-body h3 {
+	margin: 24px 0 8px;
+}
+
+.qevix-shield-tab-body > h3:first-child,
+.qevix-shield-tab-body form > h3:first-child {
+	margin-top: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Collapsible report panels (Malware "Last Scan Results", Quarantined Files,
+ * Sessions table): a <details class="qevix-shield-report" open> whose summary
+ * is the section heading, so a long report can be folded away without losing
+ * its place on the tab. Pure HTML/CSS — no JS, state resets per page load.
+ * ------------------------------------------------------------------------- */
+.qevix-shield-report {
+	margin-top: 20px;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.qevix-shield-report > summary {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+	padding: 10px 14px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	user-select: none;
+	list-style: none;
+}
+
+.qevix-shield-report > summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Chevron: points right when folded, rotates down when open. */
+.qevix-shield-report > summary::before {
+	content: "\f345";
+	font-family: dashicons;
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	line-height: 1;
+	font-weight: 400;
+	color: #787c82;
+	transition: transform .15s ease;
+}
+
+.qevix-shield-report[open] > summary::before {
+	transform: rotate( 90deg );
+}
+
+.qevix-shield-report > summary:hover,
+.qevix-shield-report > summary:focus-visible {
+	color: #2271b1;
+}
+
+.qevix-shield-report > summary:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: -2px;
+}
+
+.qevix-shield-report[open] > summary {
+	border-bottom: 1px solid #dcdcde;
+}
+
+.qevix-shield-report-body {
+	padding: 12px 14px 14px;
+}
+
+.qevix-shield-report-body > .widefat {
+	margin-top: 8px;
+}
+
+/* Count pill in the summary ("3 findings", "2 sessions"). Neutral by
+   default; -danger when the count needs attention. */
+.qevix-shield-report-count {
+	padding: 1px 9px;
+	border-radius: 10px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.qevix-shield-report-count-danger {
+	background: #facfd2;
+	color: #8a2424;
+}
+
+/* De-emphasized scan metadata after the summary title (date, scopes). */
+.qevix-shield-report-meta {
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: 400;
+	color: #646970;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.qevix-shield-report > summary::before {
+		transition: none;
+	}
+}
+
+/* ---------------------------------------------------------------------------
+ * Split toolbar (Logs header): title/description floated left, search & filter
+ * controls floated right, stacking on narrow screens. Replaces the former
+ * inline styles in views/logs.php.
+ * ------------------------------------------------------------------------- */
+.qevix-shield-toolbar {
+	margin-bottom: 12px;
+}
+
+/* Contain the floated children so the results table below can't ride up
+   into the toolbar. */
+.qevix-shield-toolbar::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.qevix-shield-toolbar > * {
+	width: 50%;
+	margin: 0 0 15px;
+	box-sizing: border-box;
+}
+
+.qevix-shield-toolbar > div {
+	float: left;
+	padding-right: 16px;
+}
+
+.qevix-shield-toolbar > form {
+	float: right;
+}
+
+/* Below the form-table breakpoint, drop the floats and stack full-width. */
+@media screen and (max-width: 782px) {
+	.qevix-shield-toolbar > * {
+		width: 100%;
+		float: none;
+		padding-right: 0;
+	}
+}
+
+.qevix-shield-toolbar h3 {
+	margin: 0 0 4px;
+}
+
+.qevix-shield-toolbar .description {
+	margin: 0;
+}
+
+.qevix-shield-toolbar .search-box {
+	float: none;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 6px;
+}
+
+/* One control height across the filter row: WP ships the search input,
+   selects, and buttons at slightly different heights — pin all three to
+   40px so the row reads as a single bar. */
+.qevix-shield-toolbar .search-box input[type="search"],
+.qevix-shield-toolbar .search-box select,
+.qevix-shield-toolbar .search-box .button {
+	box-sizing: border-box;
+	height: 40px;
+	margin: 0;
+	vertical-align: top;
+}
+
+.qevix-shield-toolbar .search-box .button {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 12px;
+}
